@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 /**
- * puts example
- *
- * return 0
+ * main - this is short 
+ * Description: this is main function
  */
-int main(void) /**this is main function*/
+int main(void)
 {
 	puts("\"Programming is like building a multilingual puzzle");
-	return (0); /** this function will return 0 value*/
+	/**
+	 * Description: main value will return 0;
+	 */
+	return (0);
 }
