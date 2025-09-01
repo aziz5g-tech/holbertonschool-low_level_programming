@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 
 /*
@@ -7,20 +8,19 @@
  *
  */
 
-int more_numbers(void)
+void more_numbers(void)
 {
 
-  int x;
+  int x, y;
   for (x=1; x <= 10; x++)
     {
-      int l;
-      for (l=0; l<= 14; l++)
+      for (y=0; y<= 14; y++)
 	{
-	  _putchar(l);
+	  _putchar(y + '0');
 	}
-      _putchar("\n")
+      _putchar('\n');
       
     }
-  _putchar("\n")
+  _putchar('\n');
   
 }
