@@ -1,23 +1,29 @@
 #include "main.h"
 
 /**
- * main - Entry point
+ * print_number - Prints an integer using only _putchar
+ * @n: The integer to print
  *
- * Return: Always 0
+ * Description: This function handles negative numbers,
+ * avoids using long, arrays, pointers, or hard-coded values.
  */
-int main(void)
+void print_number(int n)
 {
-	int a[5];
-	int *p;
+	int digit;
 
-	a[0] = 0;
-	a[1] = 1;
-	a[2] = 2;
-	a[3] = 3;
-	a[4] = 4;
-	p = a + 1;
-	*(p + 1) = 98;
-	print_number(a[2]);
-	_putchar('\n');
-	return (0);
+	if (n < 0)
+	{
+		_putchar('-');
+		if (n / 10 != 0)
+			print_number(-(n / 10));
+		digit = -(n % 10);
+	}
+	else
+	{
+		if (n / 10 != 0)
+			print_number(n / 10);
+		digit = n % 10;
+	}
+
+	_putchar(digit + '0');
 }
