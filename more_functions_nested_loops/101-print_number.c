@@ -1,4 +1,3 @@
-#include <stdio.h>
 int _putchar(char c);
 /**
   * print_number - Prints an integer.
