@@ -1,5 +1,5 @@
 #include "main.h"
-#inlcude <stdlib.h>
+#include <stdlib.h>
 
 /**
  *
