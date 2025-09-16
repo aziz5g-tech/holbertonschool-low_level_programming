@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 /**
- *
  * create_array - the function to use a specific char
  * @size: number of array size
  * @c: the char will be used in array
