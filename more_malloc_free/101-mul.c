@@ -1,4 +1,4 @@
-#include "main2.h"
+#include "main.h"
 #include <stdlib.h>
 
 /**
@@ -8,18 +8,18 @@
  */
 int is_digit(char *s)
 {
-	int i = 0;
+    int i = 0;
 
-	if (!s)
-		return (0);
+    if (!s)
+        return (0);
 
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
+    while (s[i])
+    {
+        if (s[i] < '0' || s[i] > '9')
+            return (0);
+        i++;
+    }
+    return (1);
 }
 
 /**
@@ -29,86 +29,75 @@ int is_digit(char *s)
  */
 int _strlen(char *s)
 {
-	int i = 0;
+    int i = 0;
 
-	while (s[i])
-		i++;
-	return (i);
+    while (s[i])
+        i++;
+    return (i);
 }
 
 /**
- * print_error - prints Error and exits with status 98
+ * errors - prints Error and exits with status 98
  */
-void print_error(void)
+void errors(void)
 {
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
-	_putchar('\n');
-	exit(98);
+    _putchar('E');
+    _putchar('r');
+    _putchar('r');
+    _putchar('o');
+    _putchar('r');
+    _putchar('\n');
+    exit(98);
 }
 
 /**
- * print_result - prints the result array as a number
- * @result: array of digits
- * @len: length of array
- */
-void print_result(int *result, int len)
-{
-	int i, started = 0;
-
-	for (i = 0; i < len; i++)
-	{
-		if (result[i])
-			started = 1;
-		if (started)
-			_putchar(result[i] + '0');
-	}
-
-	if (!started)
-		_putchar('0');
-
-	_putchar('\n');
-}
-
-/**
- * multiply - multiplies two positive numbers represented as strings
- * @num1: first number
- * @num2: second number
+ * multiply - multiplies two positive numbers
+ * @num1: first number as string
+ * @num2: second number as string
  */
 void multiply(char *num1, char *num2)
 {
-	int len1 = _strlen(num1);
-	int len2 = _strlen(num2);
-	int len = len1 + len2;
-	int *result, i, j, carry, digit1, digit2, idx;
+    int len1 = _strlen(num1);
+    int len2 = _strlen(num2);
+    int len = len1 + len2;
+    int *result, i, j, carry, digit1, digit2, started = 0;
 
-	result = malloc(sizeof(int) * len);
-	if (!result)
-		exit(1);
+    result = malloc(sizeof(int) * len);
+    if (!result)
+        exit(1);
 
-	for (i = 0; i < len; i++)
-		result[i] = 0;
+    /* initialize result array to 0 */
+    for (i = 0; i < len; i++)
+        result[i] = 0;
 
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		digit1 = num1[i] - '0';
-		carry = 0;
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			digit2 = num2[j] - '0';
-			idx = i + j + 1;
-			carry += result[idx] + (digit1 * digit2);
-			result[idx] = carry % 10;
-			carry /= 10;
-		}
-		result[i + j + 1] += carry;
-	}
+    for (i = len1 - 1; i >= 0; i--)
+    {
+        digit1 = num1[i] - '0';
+        carry = 0;
+        for (j = len2 - 1; j >= 0; j--)
+        {
+            digit2 = num2[j] - '0';
+            carry += result[i + j + 1] + (digit1 * digit2);
+            result[i + j + 1] = carry % 10;
+            carry /= 10;
+        }
+        result[i + j + 1] += carry;
+    }
 
-	print_result(result, len);
-	free(result);
+    /* print result */
+    for (i = 0; i < len; i++)
+    {
+        if (result[i])
+            started = 1;
+        if (started)
+            _putchar(result[i] + '0');
+    }
+
+    if (!started)
+        _putchar('0');
+
+    _putchar('\n');
+    free(result);
 }
 
 /**
@@ -119,13 +108,13 @@ void multiply(char *num1, char *num2)
  */
 int main(int argc, char *argv[])
 {
-	if (argc != 3)
-		print_error();
+    if (argc != 3)
+        errors();
 
-	if (!is_digit(argv[1]) || !is_digit(argv[2]))
-		print_error();
+    if (!is_digit(argv[1]) || !is_digit(argv[2]))
+        errors();
 
-	multiply(argv[1], argv[2]);
+    multiply(argv[1], argv[2]);
 
-	return (0);
+    return (0);
 }
