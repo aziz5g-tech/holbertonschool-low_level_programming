@@ -51,49 +51,13 @@ void print_error(void)
 }
 
 /**
- * init_result - initializes an int array to 0
- * @result: array to initialize
- * @size: size of array
+ * print_result - prints the result array as a number
+ * @result: array of digits
+ * @len: length of array
  */
-void init_result(int *result, int size)
+void print_result(int *result, int len)
 {
-	int i;
-
-	for (i = 0; i < size; i++)
-		result[i] = 0;
-}
-
-/**
- * multiply - multiplies two positive numbers
- * @num1: first number as string
- * @num2: second number as string
- */
-void multiply(char *num1, char *num2)
-{
-	int len1 = _strlen(num1);
-	int len2 = _strlen(num2);
-	int len = len1 + len2;
-	int *result, i, j, carry, digit1, digit2, started = 0;
-
-	result = malloc(sizeof(int) * len);
-	if (!result)
-		exit(1);
-
-	init_result(result, len);
-
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		digit1 = num1[i] - '0';
-		carry = 0;
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			digit2 = num2[j] - '0';
-			carry += result[i + j + 1] + (digit1 * digit2);
-			result[i + j + 1] = carry % 10;
-			carry /= 10;
-		}
-		result[i + j + 1] += carry;
-	}
+	int i, started = 0;
 
 	for (i = 0; i < len; i++)
 	{
@@ -107,6 +71,43 @@ void multiply(char *num1, char *num2)
 		_putchar('0');
 
 	_putchar('\n');
+}
+
+/**
+ * multiply - multiplies two positive numbers represented as strings
+ * @num1: first number
+ * @num2: second number
+ */
+void multiply(char *num1, char *num2)
+{
+	int len1 = _strlen(num1);
+	int len2 = _strlen(num2);
+	int len = len1 + len2;
+	int *result, i, j, carry, digit1, digit2, idx;
+
+	result = malloc(sizeof(int) * len);
+	if (!result)
+		exit(1);
+
+	for (i = 0; i < len; i++)
+		result[i] = 0;
+
+	for (i = len1 - 1; i >= 0; i--)
+	{
+		digit1 = num1[i] - '0';
+		carry = 0;
+		for (j = len2 - 1; j >= 0; j--)
+		{
+			digit2 = num2[j] - '0';
+			idx = i + j + 1;
+			carry += result[idx] + (digit1 * digit2);
+			result[idx] = carry % 10;
+			carry /= 10;
+		}
+		result[i + j + 1] += carry;
+	}
+
+	print_result(result, len);
 	free(result);
 }
 
