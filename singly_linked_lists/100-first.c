@@ -3,7 +3,7 @@
 void do_it_first(void) __attribute__ ((constructor));
 
 /**
-  * first - print You're beat! and yet, you must allow,\nI bore my...ets
+  * do_it_first - print You're beat! and yet, you must allow,\nI bore my...ets
   *
   * Return: prints before main
   */
