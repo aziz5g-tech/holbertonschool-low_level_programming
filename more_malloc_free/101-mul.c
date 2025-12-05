@@ -55,9 +55,11 @@ char *big_multiply(char *s1, char *s2)
 
 	l1 = _strlen(s1);
 	l2 = _strlen(s2);
-	r = malloc(a = x = l1 + l2);
+	x = l1 + l2;
+	r = malloc(x);
 	if (!r)
 		print_error();
+	a = x;
 	while (a--)
 		r[a] = 0;
 
@@ -104,6 +106,8 @@ int main(int argc, char **argv)
 	int a, c, x;
 
 	if (argc != 3)
+		print_error();
+	if (!argv[1] || !argv[2] || !argv[1][0] || !argv[2][0])
 		print_error();
 
 	x = _strlen(argv[1]) + _strlen(argv[2]);
