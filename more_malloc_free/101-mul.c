@@ -107,8 +107,6 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 		print_error();
-	if (!argv[1] || !argv[2] || !argv[1][0] || !argv[2][0])
-		print_error();
 
 	x = _strlen(argv[1]) + _strlen(argv[2]);
 	r = big_multiply(argv[1], argv[2]);
