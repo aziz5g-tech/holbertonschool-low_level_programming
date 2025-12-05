@@ -1,6 +1,5 @@
 #include "main.h"
-#include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 /**
  * _isdigit - checks if character is digit
@@ -29,6 +28,20 @@ int _strlen(char *s)
 }
 
 /**
+ * print_error - prints Error and exits
+ */
+void print_error(void)
+{
+	_putchar('E');
+	_putchar('r');
+	_putchar('r');
+	_putchar('o');
+	_putchar('r');
+	_putchar('\n');
+	exit(98);
+}
+
+/**
  * big_multiply - multiply two big number strings
  * @s1: the first big number string
  * @s2: the second big number string
@@ -44,7 +57,7 @@ char *big_multiply(char *s1, char *s2)
 	l2 = _strlen(s2);
 	r = malloc(a = x = l1 + l2);
 	if (!r)
-		printf("Error\n"), exit(98);
+		print_error();
 	while (a--)
 		r[a] = 0;
 
@@ -53,7 +66,7 @@ char *big_multiply(char *s1, char *s2)
 		if (!_isdigit(s1[l1]))
 		{
 			free(r);
-			printf("Error\n"), exit(98);
+			print_error();
 		}
 		a = s1[l1] - '0';
 		c = 0;
@@ -63,7 +76,7 @@ char *big_multiply(char *s1, char *s2)
 			if (!_isdigit(s2[l2]))
 			{
 				free(r);
-				printf("Error\n"), exit(98);
+				print_error();
 			}
 			b = s2[l2] - '0';
 
@@ -78,7 +91,6 @@ char *big_multiply(char *s1, char *s2)
 	return (r);
 }
 
-
 /**
  * main - multiply two big number strings
  * @argc: the number of arguments
@@ -92,7 +104,7 @@ int main(int argc, char **argv)
 	int a, c, x;
 
 	if (argc != 3)
-		printf("Error\n"), exit(98);
+		print_error();
 
 	x = _strlen(argv[1]) + _strlen(argv[2]);
 	r = big_multiply(argv[1], argv[2]);
