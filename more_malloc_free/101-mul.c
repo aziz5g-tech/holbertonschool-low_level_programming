@@ -3,7 +3,7 @@
  * Auth: ABDULAZIZ ALRSHEDI
  */
 
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 
